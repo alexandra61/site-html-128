@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Acasa</title>
+        <link rel="stylesheet" href="./style/app.css">
+          
+        <!-- Aplicam acelasi stil de la hover elementului a carui atribuit "href" incepe cu... -->
+         <style>
+          .nav-menu .nav-link[href^="acasa"]{
+            transition:all 0.3s ease-in-out;
+            color: rgb(7, 23, 255);
+            letter-spacing:2px;
+          }
+         </style>
+    
+      </head>
+    <body>
+      <!--Meniu Navigatie--> 
+      <nav>
+          <ul class="nav-menu">
+            <li>
+             <a class="nav-link" href="acasa.html">Acasa</a>
+            </li>
+            <li>
+            <a class="nav-link" href="catalog.html">Catalog</a>
+        </li>
+               <li>
+                <a class="nav-link" href="contact.html">Contact</a>
+            </li>
+          </ul>
+          <span id="mode-toggle"></span>
+      </nav> 
+      <!-- END Meniu Navigatie -->  
+
+      <!-- Sectiune Jumbotron -->
+       <div class="jumbotron-section">
+         <div  class="overlay"></div>
+         <h1>Numele site ului</h1>
+         <P>This paragraph
+          contains a lot of lines
+          in the source code,
+          but the browser
+          ignores it.</P>
+
+       </div>
+      <!--  END Sectiune Jumbotron -->
+      <!-- Continut Pagina -->
+      <section class="page-content">
+           <div class="page-content--text">
+     <p>
+      Numele site ului
+      This paragraph
+       contains a lot of lines
+       in the source code,
+       but the browser
+       ignores it.
+       
+     </p>
+     <p>Numele site ului
+      This paragraph
+       contains a lot of lines
+       in the source code,
+       but the browser
+       ignores it.</p>
+     </div>
+     <img src="https://source.unsplash.com/1600x900/?animals" alt="Poza cu Panda" class="page-content--img">
+      </section>
+      <!-- END Continut Pagina -->
+        <section class="cards-container">
+        <h2>Sectiune Carduri</h2>
+        <ul class="cards-list">
+          <li>
+            <div class="card"> 
+              <img src="https://source.unsplash.com/1600x900/?animals" alt="Poza cu Panda" class="page-content--img">
+              <div class="card-content"> 
+                <h3>Titlu</h3>
+                <p>Numele site ului
+                  This paragraph
+                   contains a lot of lines
+                   in the source code,
+                   but the browser
+                   ignores</p>
+                   <button> Mai multe</button>
+              </div>
+            
+            </div>
+            
+          </li>
+
+
+        </ul>
+      </section>  
+      <!--Sectiune Footer -->
+       <footer>
+         <p>
+           Copyright 2021
+         </p>
+       </footer>
+      <!-- END Sectiune Footer -->
+      
+      <script src="./js/app.js"></script>
+      <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.5/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        import {  getDatabase, ref, child, get} from "https://www.gstatic.com/firebasejs/9.6.5/firebase-database.js";
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyDevdvew56bONdgybAuEjJ2E4IfB7Wm2_I",
+          authDomain: "site-html-111.firebaseapp.com",
+          databaseURL: "https://site-html-111-default-rtdb.firebaseio.com",
+          projectId: "site-html-111",
+          storageBucket: "site-html-111.appspot.com",
+          messagingSenderId: "723135763931",
+          appId: "1:723135763931:web:27ed79067049d4c05b83fe",
+          measurementId: "G-HB4G8REYPK"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const database= getDatabase(app);
+        const dbRef = ref(database);
+
+          get(child(dbRef, 'proiecte'))
+              .then(function(data) {
+                if (data.exists()) {
+                const listaProiecte = data.val();
+                console.log(listaProiecte);
+              }else {
+                console.log ('No data');
+              }
+            })
+            .catch(function(error) {
+              console.log(error);
+            })
+      </script>
+    </body>
+  
+
+</html>
